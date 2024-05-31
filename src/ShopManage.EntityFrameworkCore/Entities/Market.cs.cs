@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Entities;
 
-namespace ShopManage.DbMigrator.Entities
+namespace ShopManage.EntityFrameworkCore.Entities
 {
     public class Market : BasicAggregateRoot<Guid>
     {
