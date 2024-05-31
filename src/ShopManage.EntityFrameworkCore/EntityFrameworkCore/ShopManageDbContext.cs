@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ShopManage.EntityFrameworkCore.Entities;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
@@ -53,6 +55,20 @@ public class ShopManageDbContext :
 
     #endregion
 
+    public DbSet<AddressInfo> AddressInfos { get; set; }
+
+    public DbSet<Product> Products { get; set; }
+
+    public DbSet<Market> Markets { get; set; }
+
+    public DbSet<Order> Orders { get; set; }
+
+    public DbSet<ProductCategory> ProductCategorys { get; set; }
+
+    public DbSet<ProductSnap> ProductSnaps { get; set; }
+
+    public DbSet<ProductMapMarket> ProductMapMarkets { get; set; }
+
     public ShopManageDbContext(DbContextOptions<ShopManageDbContext> options)
         : base(options)
     {
@@ -76,11 +92,40 @@ public class ShopManageDbContext :
 
         /* Configure your own tables/entities inside here */
 
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(ShopManageConsts.DbTablePrefix + "YourEntities", ShopManageConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
+        builder.Entity<AddressInfo>(b =>
+        {
+            b.ToTable(ShopManageConsts.ShopPrefix + "AddressInfos", ShopManageConsts.DbSchema);
+            b.ConfigureByConvention();
+        });
+        builder.Entity<Product>(b =>
+        {
+            b.ToTable(ShopManageConsts.ShopPrefix + "Products", ShopManageConsts.DbSchema);
+            b.ConfigureByConvention();
+        });
+        builder.Entity<Market>(b =>
+        {
+            b.ToTable(ShopManageConsts.ShopPrefix + "Markets", ShopManageConsts.DbSchema);
+            b.ConfigureByConvention();
+        });
+        builder.Entity<Order>(b =>
+        {
+            b.ToTable(ShopManageConsts.ShopPrefix + "Orders", ShopManageConsts.DbSchema);
+            b.ConfigureByConvention();
+        });
+        builder.Entity<ProductCategory>(b =>
+        {
+            b.ToTable(ShopManageConsts.ShopPrefix + "ProductCategorys", ShopManageConsts.DbSchema);
+            b.ConfigureByConvention();
+        });
+        builder.Entity<ProductSnap>(b =>
+        {
+            b.ToTable(ShopManageConsts.ShopPrefix + "ProductSnaps", ShopManageConsts.DbSchema);
+            b.ConfigureByConvention();
+        });
+        builder.Entity<ProductMapMarket>(b =>
+        {
+            b.ToTable(ShopManageConsts.ShopPrefix + "ProductMapMarkets", ShopManageConsts.DbSchema);
+            b.ConfigureByConvention();
+        });
     }
 }
